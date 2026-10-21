@@ -52,7 +52,8 @@ Sitet er bare filer, så deploy er at kopiere `public/` til webserverens rodmapp
 rsync -avzn --delete public/ bruger@server:/srv/kanalkanten/
 
 # Selve deploy
-rsync -avz --delete public/ bruger@server:/srv/kanalkanten/
+# Sikre alle brugere (inklusiv hosting bruger) kan læse filer under /src/kanalkanten
+rsync -avz --delete --chmod=D755,F644 public/ bruger@server:/srv/kanalkanten/
 ```
 
 Bemærk:
